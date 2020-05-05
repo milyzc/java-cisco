@@ -5,7 +5,7 @@ public class CodigoBarra {
     private CodigoPais codigoPais;
     private CodigoEmpresa codigoEmpresa;
     private CodigoProducto codigoProducto;
-    private static int Long_EAN13 = 12;
+    private final int Long_EAN13 = 12;
 
     public CodigoBarra(String codigoPais, String codigoEmpresa, String codigoProducto) throws Exception {
         this.codigoPais = new CodigoPais(codigoPais);
