@@ -5,7 +5,7 @@ public class CodigoBarra {
     private CodigoPais codigoPais;
     private CodigoEmpresa codigoEmpresa;
     private CodigoProducto codigoProducto;
-    private static int EAN13 = 12;
+    private static int Long_EAN13 = 12;
 
     public CodigoBarra(String codigoPais, String codigoEmpresa, String codigoProducto) throws Exception {
         this.codigoPais = new CodigoPais(codigoPais);
@@ -44,7 +44,7 @@ public class CodigoBarra {
 
     public void ValidarLongitud() throws Exception {
         Integer cont = codigoPais.getLongitud() + codigoEmpresa.getLongitud() + codigoProducto.getLongitud();
-        if (cont != EAN13) {
+        if (cont != Long_EAN13) {
             throw new Exception("El código de barra ingresado no tiene la longitud adecuada.");
         }
     }

@@ -1,6 +1,6 @@
 package com.codigoBarra.clases;
 
-public class Codigo {
+public abstract class Codigo {
 
     private String codigo;
 
@@ -16,4 +16,5 @@ public class Codigo {
         return codigo.length();
     }
 
+    public abstract void ValidarLongitud() throws Exception;
 }
