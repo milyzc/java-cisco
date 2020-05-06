@@ -14,7 +14,7 @@ import java.util.Random;
 public class CodigoEmpresa extends Codigo {
 
     public CodigoEmpresa() {
-        super( 4,  5, "Codigo de empresa");
+        super( 5,  4, "Codigo de empresa");
     }
 
     @Override

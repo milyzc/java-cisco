@@ -57,4 +57,8 @@ public class Codigo {
     public String toString() {
         return this.nombreCodigo + " = " + this.valor;
     }
+    
+    public int getValueInt(){
+        return Integer.parseInt(valor);
+    }
 }

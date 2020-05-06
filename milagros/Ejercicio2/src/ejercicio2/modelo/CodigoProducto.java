@@ -12,7 +12,7 @@ package ejercicio2.modelo;
 public class CodigoProducto extends Codigo {
 
     public CodigoProducto() {
-        super( 4,  5, "Codigo de producto");
+        super( 5,  4, "Codigo de producto");
     }
 
 }

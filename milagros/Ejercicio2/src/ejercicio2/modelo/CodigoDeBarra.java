@@ -5,8 +5,6 @@
  */
 package ejercicio2.modelo;
 
-import ejercicio2.excepciones.DigitoControlException;
-
 /**
  *
  * @author TARDIS
@@ -17,19 +15,10 @@ public class CodigoDeBarra extends Codigo {
     private CodigoEmpresa codigoDeEmpresa;
     private CodigoProducto codigoDeProducto;
     private DigitoDeControl digito;
-    private int digitoDeControl;
 
     public CodigoDeBarra(String valor) {
-        super( 13,  13, "Codigo de barras");
+        super(13, 13, "Codigo de barras");
         this.valor = valor;
-    }
-
-    public int getDigitoDeControl() {
-        return digitoDeControl;
-    }
-
-    public void setDigitoDeControl(int digitoDeControl) {
-        this.digitoDeControl = digitoDeControl;
     }
 
     @Override
@@ -43,7 +32,7 @@ public class CodigoDeBarra extends Codigo {
                 + System.lineSeparator()
                 + codigoDeProducto.toString()
                 + System.lineSeparator()
-                + this.digitoDeControl;
+                + digito.toString();
     }
 
     @Override
@@ -54,22 +43,21 @@ public class CodigoDeBarra extends Codigo {
         codigoDePais.Validar();
         codigoDeEmpresa.Validar();
         codigoDeProducto.Validar();
-        digito.Validar();
-        if (digito.generarDigitoDeControl() != digitoDeControl) {
-            throw new DigitoControlException();
-        }
-        digitoDeControl = digito.generarDigitoDeControl();
+        digito.Validar();        
     }
 
     private void setCodigos() throws Exception {
-        this.digitoDeControl = Integer.parseInt(this.valor.substring(this.valor.length() - 1));
+        
         int indexFinSinControl = this.valor.length() - 1;
         int indexInicio = 0;
+        this.digito.setValor(this.valor.substring(indexFinSinControl));
+        this.digito.setValoresSinControl(
+                this.valor.substring(indexInicio, indexFinSinControl));
         int indexFin = this.codigoDePais.getLength();
-        this.codigoDePais.setValor(this.valor.substring(indexInicio, --indexFin));
+        this.codigoDePais.setValor(this.valor.substring(indexInicio, indexFin));
         indexInicio = indexFin;
-        indexFin = this.codigoDeEmpresa.getLength();
-        this.codigoDeEmpresa.setValor(this.valor.substring(indexInicio, --indexFin));
+        indexFin = indexInicio + this.codigoDeEmpresa.getLength();
+        this.codigoDeEmpresa.setValor(this.valor.substring(indexInicio, indexFin));
         indexInicio = indexFin;
         this.codigoDeProducto.setValor(this.valor.substring(indexInicio, indexFinSinControl));
     }
@@ -78,5 +66,10 @@ public class CodigoDeBarra extends Codigo {
         this.codigoDePais = new CodigoPais();
         this.codigoDeEmpresa = new CodigoEmpresa();
         this.codigoDeProducto = new CodigoProducto();
+        this.digito = new DigitoDeControl();
+    }
+    
+    public String mostrarDigitoCorrecto(){
+        return this.digito.mostrarDigitoCorrecto();
     }
 }

@@ -5,6 +5,7 @@
  */
 package ejercicio2;
 
+import ejercicio2.excepciones.DigitoControlException;
 import ejercicio2.modelo.CodigoDeBarra;
 import java.util.Scanner;
 
@@ -25,7 +26,12 @@ public class Ejecutar {
         CodigoDeBarra cb = new CodigoDeBarra(codigoIngresado);
         try {
             cb.Validar();
-            cb.toString();
+            System.out.println("Código correcto");
+            System.out.println(cb.toString());
+        } catch (DigitoControlException e) {
+            System.out.println(e.getMessage());
+            System.out.println(cb.toString());
+            System.out.println(cb.mostrarDigitoCorrecto());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
