@@ -11,7 +11,7 @@ import ejercicio2.excepciones.*;
  *
  * @author TARDIS
  */
-public class Codigo {
+public abstract class Codigo {
 
     protected final int maxLength;
     protected final int minLength;

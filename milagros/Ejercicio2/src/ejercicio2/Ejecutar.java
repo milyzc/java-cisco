@@ -29,10 +29,12 @@ public class Ejecutar {
             System.out.println("Código correcto");
             System.out.println(cb.toString());
         } catch (DigitoControlException e) {
+            System.out.println("Código incorrecto");
             System.out.println(e.getMessage());
             System.out.println(cb.toString());
             System.out.println(cb.mostrarDigitoCorrecto());
         } catch (Exception e) {
+            System.out.println("Código inScorrecto");
             System.out.println(e.getMessage());
         }
 
