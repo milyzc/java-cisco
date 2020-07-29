@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7c1c4ce8-1660-41ac-bab7-2b82f5aca48b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../datosusers.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/AppStore.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppStore.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/mysql-connector-java-8.0.16.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manifest.mf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/Ejecutable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/config/Configuracion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/dao/AplicacionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/dao/AplicacionDaoJDBC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/dao/UsuarioDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/dao/UsuarioDaoJDBC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/entidades/Aplicacion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/entidades/Password.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/entidades/Persona.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/entidades/Publicacion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/entidades/Rol.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/entidades/Usuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/gui/AppTableModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/gui/JFLogin.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/gui/JFLogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/gui/JFrameCompra.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/gui/JFrameCompra.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/gui/JFramePrincipal.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/gui/JFramePrincipal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/servicios/GestorAplicaciones.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/servicios/GestorUsuarios.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/javaint/servicios/ThreadImportacion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/admin/avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/workspace/jorge/avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../codigoBarra/.idea/vcs.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1fLAItwkJAbFsARj3KkYs3QX1zy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/mysql-connector-java-8.0.16.jar!/" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager" selected="Application.Generador">
+    <configuration name="Ejecutable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.javaint.Ejecutable" />
+      <module name="AppStore" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.javaint.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Generador" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.javaint.Generador" />
+      <module name="AppStore" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.javaint.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Ejecutable" />
+      <item itemvalue="Application.Generador" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Generador" />
+        <item itemvalue="Application.Ejecutable" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7c1c4ce8-1660-41ac-bab7-2b82f5aca48b" name="Default Changelist" comment="" />
+      <created>1595986922230</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595986922230</updated>
+      <workItem from="1595986923465" duration="793000" />
+      <workItem from="1595993975192" duration="200000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595993025513">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1595993025513" />
+    <state x="480" y="249" key="DetectedRootsChooserDialog" timestamp="1595987608808">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="480" y="249" key="DetectedRootsChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1595987608808" />
+    <state x="550" y="114" key="EnvironmentVariablesDialog" timestamp="1595993016896">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="550" y="114" key="EnvironmentVariablesDialog/0.0.1366.728@0.0.1366.728" timestamp="1595993016896" />
+    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1595994114302">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1595994114302" />
+    <state width="1323" height="342" key="GridCell.Tab.0.bottom" timestamp="1595993551786">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="342" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595993551786" />
+    <state width="1323" height="342" key="GridCell.Tab.0.center" timestamp="1595993551786">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="342" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595993551786" />
+    <state width="1323" height="342" key="GridCell.Tab.0.left" timestamp="1595993551786">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="342" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595993551786" />
+    <state width="1323" height="342" key="GridCell.Tab.0.right" timestamp="1595993551786">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="342" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595993551786" />
+    <state width="1323" height="342" key="GridCell.Tab.1.bottom" timestamp="1595993551786">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="342" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595993551786" />
+    <state width="1323" height="342" key="GridCell.Tab.1.center" timestamp="1595993551786">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="342" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1595993551786" />
+    <state width="1323" height="342" key="GridCell.Tab.1.left" timestamp="1595993551786">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="342" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1595993551786" />
+    <state width="1323" height="342" key="GridCell.Tab.1.right" timestamp="1595993551786">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="342" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1595993551786" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1595994013756">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1595994013756" />
+    <state x="320" y="25" key="new project wizard" timestamp="1595994115974">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="320" y="25" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1595994115974" />
+  </component>
+</project>
