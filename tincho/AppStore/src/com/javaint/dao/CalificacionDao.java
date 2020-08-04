@@ -9,4 +9,5 @@ public interface CalificacionDao {
 
     Calificacion obtenerCalificacion(int idUsuario, int idApp);
 
+    Calificacion obtenerCalificacionXID(int idClasificacion);
 }

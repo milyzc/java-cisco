@@ -13,11 +13,13 @@ public class Aplicacion {
       private int idApp;
       private String nombre;
       private float precio;
+      private Calificacion calificacion;
 
-    public Aplicacion(int idApp, String nombre, float precio) {
+    public Aplicacion(int idApp, String nombre, float precio,Calificacion calificacion) {
         this.idApp = idApp;
         this.nombre = nombre;
         this.precio = precio;
+        this.calificacion = calificacion;
     }
 
     public int getIdApp() {
@@ -43,5 +45,8 @@ public class Aplicacion {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
-      
-}   
+
+    public Calificacion getCalificacion() {
+        return calificacion;
+    }
+}

@@ -11,10 +11,12 @@ import com.javaint.entidades.Password;
 import com.javaint.entidades.Persona;
 import com.javaint.entidades.Usuario;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 /**
@@ -52,7 +54,7 @@ public class GestorUsuarios {
 
 
     public boolean registrarUsuario(String apellidoNombre, String dni,
-                                    String email,String usuario, String password){
+                                    String email, String usuario, String password) {
         Persona persona = new Persona(apellidoNombre, dni, email, usuario, password);
         return this.personaDao.crear(persona);
     }
@@ -87,7 +89,6 @@ public class GestorUsuarios {
         if (userLog == null) {
             throw new RuntimeException("No hay usuario logueado");
         }
-
         return Paths.get("workspace", this.userLog.getUsuario().getNombre(), "avatar.png").
                 toAbsolutePath().toString();
     }
@@ -96,8 +97,8 @@ public class GestorUsuarios {
         return personaDao.existeEmail(email);
     }
 
-    public boolean editarUsuario(int idUsuario,String apellidoNombre, String dni,
-                                 String email,String usuario, String password) {
+    public boolean editarUsuario(int idUsuario, String apellidoNombre, String dni,
+                                 String email, String usuario, String password) {
         Persona persona = this.personaDao.obtenerPersonaXidUsuario(idUsuario);
         persona.setApellidoNombre(apellidoNombre);
         persona.setDni(dni);
@@ -105,5 +106,17 @@ public class GestorUsuarios {
         persona.getUsuario().setNombre(usuario);
         persona.getUsuario().setPass(new Password(password));
         return this.personaDao.editar(persona);
+    }
+
+    public void setUserAvatar(File file) {
+        Path imageFile = Paths.get(String.valueOf(file.toPath()));
+        if (Files.exists(imageFile)) {
+            Path workspaceDir = Paths.get("workspace",userLog.getApellidoNombre(),"avatar.png" );
+            try {
+                Files.copy(imageFile,workspaceDir , StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioe) {
+                throw new RuntimeException("Problema al actualizar imagen!", ioe);
+            }
+        }
     }
 }

@@ -21,4 +21,5 @@ public interface AplicacionDao {
     boolean crearAplicacion(int idUsuario, String appNom, String precio);
 
     boolean clasificarApp(int idUsuario, int idApp, int idCalificacion);
+    List<Aplicacion> buscarAplicacionesCompradas(int idUsuario);
 }

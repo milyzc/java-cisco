@@ -17,13 +17,13 @@ import javax.swing.table.AbstractTableModel;
 public class AppTableModel extends AbstractTableModel {
 
     private final GestorAplicaciones gestor;
-    private static final String[] NOMBRES = {"Aplicación", "Precio ($)"};
-    private static final Class[] CLASES = {String.class, Float.class};
+    private static final String[] NOMBRES = {"Aplicación", "Precio ($)","Valoración"};
+    private static final Class[] CLASES = {String.class, Float.class,String.class};
     private List<Aplicacion> datos;
 
-    public AppTableModel(GestorAplicaciones gestorApp) {
+    public AppTableModel(GestorAplicaciones gestorApp,boolean compras) {
         this.gestor = gestorApp;
-        this.datos = this.gestor.buscarAplicacionesDisponibles();
+        this.datos = compras ? this.gestor.buscarAplicacionesCompradas() :this.gestor.buscarAplicacionesDisponibles();
     }
 
     
@@ -45,6 +45,9 @@ public class AppTableModel extends AbstractTableModel {
                 case 1:
                     resultado = seleccionada.getPrecio();
                     break;
+                case 2:
+                    resultado = seleccionada.getCalificacion().getNombre();
+                    break;
             }
         }
 
@@ -53,7 +56,7 @@ public class AppTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 3;
     }
 
     @Override

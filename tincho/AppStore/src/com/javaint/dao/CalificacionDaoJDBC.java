@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CalificacionDaoJDBC implements CalificacionDao{
+public class CalificacionDaoJDBC implements CalificacionDao {
     private Configuracion config;
 
     public CalificacionDaoJDBC() {
@@ -52,6 +52,26 @@ public class CalificacionDaoJDBC implements CalificacionDao{
                         rs.getInt(1),
                         rs.getString(2));
             }
+            rs.close();
+        } catch (SQLException sqle) {
+            throw new RuntimeException("Error de BD!", sqle);
+        }
+        return aux;
+    }
+
+    @Override
+    public Calificacion obtenerCalificacionXID(int idClasificacion) {
+        String query = "SELECT * FROM calificaciones WHERE id_calificacion=?";
+        Calificacion aux = null;
+        Configuracion config = Configuracion.getInstance();
+        try (Connection cnn = DriverManager.getConnection(config.getConnectionString(), config.getDbUserName(), config.getDbPassword());
+             PreparedStatement ps = cnn.prepareStatement(query)) {
+            ps.setInt(1, idClasificacion);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                aux = new Calificacion(
+                        rs.getInt(1),
+                        rs.getString(2));            }
             rs.close();
         } catch (SQLException sqle) {
             throw new RuntimeException("Error de BD!", sqle);

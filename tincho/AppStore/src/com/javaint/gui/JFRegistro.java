@@ -70,7 +70,8 @@ public class JFRegistro extends JDialog {
                         if (var) {
                             JOptionPane.showMessageDialog(null, "Se actualizo el usuario con exito.", "Exito", JOptionPane.INFORMATION_MESSAGE);
                             dispose();
-                            new JFInicioSession().setVisible(true);
+                            if (!editar)
+                                new JFInicioSession().setVisible(true);
                         } else {
                             JOptionPane.showMessageDialog(null, "Error al registrar el usuario!", "Validación", JOptionPane.ERROR_MESSAGE);
                         }

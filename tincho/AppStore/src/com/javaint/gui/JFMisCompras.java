@@ -27,7 +27,7 @@ public class JFMisCompras extends JDialog{
         this.setTitle("Compras");
         this.setLocationRelativeTo(null);
         this.setModal(true);
-        this.tableModel = new AppTableModel(gestorApps);
+        this.tableModel = new AppTableModel(gestorApps,true);
         this.JTCompras.setModel(this.tableModel);
         JBCalificar.addActionListener(new ActionListener() {
             @Override

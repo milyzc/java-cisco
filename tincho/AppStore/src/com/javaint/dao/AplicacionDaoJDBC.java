@@ -7,6 +7,7 @@ package com.javaint.dao;
 
 import com.javaint.config.Configuracion;
 import com.javaint.entidades.Aplicacion;
+import com.javaint.entidades.Calificacion;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -18,9 +19,11 @@ import java.util.List;
 public class AplicacionDaoJDBC implements AplicacionDao {
 
     private Configuracion config;
+    private CalificacionDao calificacionDao;
 
     public AplicacionDaoJDBC() {
         this.config = Configuracion.getInstance();
+        this.calificacionDao= new CalificacionDaoJDBC();
     }
 
     @Override
@@ -46,13 +49,44 @@ public class AplicacionDaoJDBC implements AplicacionDao {
             while (rs.next()) {
                 app = new Aplicacion(rs.getInt(1),
                         rs.getString(2),
-                        rs.getFloat(3));
+                        rs.getFloat(3),
+                        calificacionDao.obtenerCalificacionXID(rs.getInt(4)));
                 aux.add(app);
             }
             rs.close();
 
         } catch (SQLException e) {
             throw new RuntimeException("Error al recuperar las aplicaciones disponibles!", e);
+        }
+
+        return aux;
+    }
+
+    @Override
+    public List<Aplicacion> buscarAplicacionesCompradas(int idUsuario) {
+        List<Aplicacion> aux = new LinkedList<>();
+
+        String query = "SELECT a.* "
+                + " FROM aplicaciones  a,  aplicaciones_compradas ac"
+                + " WHERE ac.id_aplicacion = a.id_aplicacion"
+                + " AND ac.id_usuario = ?";
+        try (Connection cnn = DriverManager.getConnection(config.getConnectionString(),
+                config.getDbUserName(), config.getDbPassword());
+             PreparedStatement ps = cnn.prepareStatement(query)) {
+            ps.setInt(1, idUsuario);
+            ResultSet rs = ps.executeQuery();
+            Aplicacion app;
+            while (rs.next()) {
+                app = new Aplicacion(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getFloat(3),
+                        calificacionDao.obtenerCalificacionXID(rs.getInt(4)));
+                aux.add(app);
+            }
+            rs.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al recuperar las aplicaciones disponibles!");
         }
 
         return aux;
@@ -74,11 +108,12 @@ public class AplicacionDaoJDBC implements AplicacionDao {
             ps.setInt(1, idUsuario);
             ResultSet rs = ps.executeQuery();
 
-            Aplicacion app = null;
+            Aplicacion app;
             while (rs.next()) {
                 app = new Aplicacion(rs.getInt(1),
                         rs.getString(2),
-                        rs.getFloat(3));
+                        rs.getFloat(3),
+                        calificacionDao.obtenerCalificacionXID(rs.getInt(4)));
                 aux.add(app);
             }
             rs.close();
@@ -86,7 +121,6 @@ public class AplicacionDaoJDBC implements AplicacionDao {
         } catch (SQLException e) {
             throw new RuntimeException("Error al recuperar las aplicaciones disponibles!");
         }
-
         return aux;
     }
 
@@ -197,10 +231,45 @@ public class AplicacionDaoJDBC implements AplicacionDao {
             stm.setInt(2, idUsuario);
             stm.setInt(3, idApp);
             rows = stm.executeUpdate();
-
         } catch (SQLException sqle) {
             throw new RuntimeException("Error de BD. No se pudo clasificar!", sqle);
         }
+        actualizarCalificacionGral(idApp);
         return rows == 1;
+    }
+
+    private void actualizarCalificacionGral(int idApp) {
+
+        String query = "UPDATE aplicaciones " +
+                "SET id_calificacion=? where id_aplicacion=?";
+        try (Connection cnn = DriverManager.getConnection(
+                config.getConnectionString(), config.getDbUserName(), config.getDbPassword());
+             PreparedStatement stm = cnn.prepareStatement(query)) {
+            stm.setInt(1, obtenercalificacionPromedio(idApp) );
+            stm.setInt(2,idApp);
+            stm.executeUpdate();
+        } catch (SQLException sqle) {
+            throw new RuntimeException("Error de BD. No se pudo clasificar!", sqle);
+        }
+    }
+
+    private int obtenercalificacionPromedio(int idApp) {
+        String query = "SELECT Avg(id_calificacion) " +
+                "FROM aplicaciones_compradas" +
+                " WHERE id_aplicacion=? AND id_calificacion<>0";
+        double aux = 0;
+        Configuracion config = Configuracion.getInstance();
+        try (Connection cnn = DriverManager.getConnection(config.getConnectionString(), config.getDbUserName(), config.getDbPassword());
+             PreparedStatement ps = cnn.prepareStatement(query)) {
+            ps.setInt(1, idApp);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                aux = rs.getDouble(1);
+            }
+            rs.close();
+        } catch (SQLException sqle) {
+            throw new RuntimeException("Error de BD!", sqle);
+        }
+        return (int) Math.round(aux);
     }
 }

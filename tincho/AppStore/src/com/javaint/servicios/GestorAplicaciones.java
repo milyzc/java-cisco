@@ -65,4 +65,8 @@ public class GestorAplicaciones {
     public List<Calificacion> obtenerCalificaciones() {
         return calificacionDAO.obtenerCalificaciones();
     }
+
+    public List<Aplicacion> buscarAplicacionesCompradas() {
+        return this.appDAO.buscarAplicacionesCompradas(this.usuario.getIdUsuario());
+    }
 }

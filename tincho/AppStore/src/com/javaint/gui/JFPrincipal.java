@@ -4,11 +4,15 @@ import com.javaint.entidades.Aplicacion;
 import com.javaint.servicios.GestorAplicaciones;
 import com.javaint.servicios.GestorUsuarios;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class JFPrincipal extends JFrame {
     private JPanel panelPrincipal;
@@ -28,6 +32,7 @@ public class JFPrincipal extends JFrame {
     private final GestorUsuarios gestorUsuarios;
     private final GestorAplicaciones gestorApps;
     private final AppTableModel tableModel;
+    private final JFileChooser fc;
 
     public JFPrincipal(final GestorUsuarios gestor) {
         this.gestorUsuarios = gestor;
@@ -40,8 +45,9 @@ public class JFPrincipal extends JFrame {
         this.jlImagen.setText(null);
         this.jlImagen.setIcon(new ImageIcon(gestorUsuarios.getUserAvatar()));
         this.gestorApps = new GestorAplicaciones(gestorUsuarios.getUserLog().getUsuario());
-        this.tableModel = new AppTableModel(gestorApps);
+        this.tableModel = new AppTableModel(gestorApps, false);
         this.jtAplicaciones.setModel(this.tableModel);
+        this.fc = new JFileChooser();
 
         comprarAppButton.addActionListener(new ActionListener() {
             @Override
@@ -91,8 +97,26 @@ public class JFPrincipal extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                new JFMisCompras(gestorApps,gestorUsuarios).setVisible(true);
+                new JFMisCompras(gestorApps, gestorUsuarios).setVisible(true);
+            }
+        });
+        jlImagen.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int returnVal = fc.showOpenDialog(JFPrincipal.this);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    gestorUsuarios.setUserAvatar(file);
+                    try {
+                        jlImagen.setIcon(new ImageIcon(ImageIO.read(file)));
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                }
             }
         });
     }
+
+
 }
