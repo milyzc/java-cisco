@@ -18,6 +18,7 @@ public interface AplicacionDao {
     public Aplicacion getAplicacionById(int id);
     public void publicar(Aplicacion app) throws Exception;
     public void comprar(Aplicacion app) throws Exception;
-    public boolean esAppComprada(Integer idApp, Integer idUsuario);
+    public Aplicacion esAppComprada(Integer idApp, Integer idUsuario);
+    public void calificar(Aplicacion app) throws Exception;
     
 }

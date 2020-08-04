@@ -7,6 +7,7 @@ package com.javaint.dao;
 
 import com.javaint.config.Configuracion;
 import com.javaint.entidades.Aplicacion;
+import com.javaint.entidades.Calificacion;
 import com.javaint.entidades.Rol;
 import com.javaint.excepciones.OperacionIncompletaException;
 import java.sql.Connection;
@@ -177,22 +178,45 @@ public class AplicacionDaoJDBC implements AplicacionDao {
     }
 
     @Override
-    public boolean esAppComprada(Integer idApp, Integer idUsuario) {
-        String query = "SELECT id_aplicacion FROM aplicaciones_compradas ac WHERE ac.id_usuario = ?";
+    public Aplicacion esAppComprada(Integer idApp, Integer idUsuario) {
+        String query = "SELECT id_aplicacion, id_calificacion FROM aplicaciones_compradas ac WHERE ac.id_usuario = ?";
         boolean esComprada = false;
+        Aplicacion app = null;
         try (Connection cnn = DriverManager.getConnection(config.getConnectionString(), config.getDbUserName(), config.getDbPassword());
                 PreparedStatement ps = cnn.prepareStatement(query)) {
             ps.setInt(1, idUsuario);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     esComprada = true;
+                    app = new Aplicacion(rs.getInt(1));
+                    app.setCalificacion(new Calificacion(rs.getInt(2)));
                 }
             }
 
         } catch (SQLException e) {
             throw new RuntimeException("Error", e);
         }
-        return esComprada;
+        return app;
+    }
+
+    @Override
+    public void calificar(Aplicacion app) throws Exception {
+       int rows = 0;
+        String query =  "UPDATE aplicaciones_compradas SET calificacion=? WHERE id_usuario=? AND id_aplicacion=?"; 
+        try (Connection cnn = DriverManager
+                .getConnection(config.getConnectionString(), config.getDbUserName(),
+                        config.getDbPassword());
+                PreparedStatement psApp = cnn.prepareStatement(query);) {
+            psApp.setString(1, app.getCalificacion().getId().toString());
+            psApp.setString(2, app.getUsuario().getId().toString());
+            psApp.setString(3, app.getIdApp().toString());
+            rows = psApp.executeUpdate();
+        }catch (SQLException sqle) {
+            throw new OperacionIncompletaException();
+        }
+        if (rows == 0) {
+            throw new OperacionIncompletaException();
+        }
     }
 
 }

@@ -29,7 +29,7 @@ public class GestorUsuarios {
 
     private final UsuarioDao dao;
 
-    private Usuario userLog;
+    private static Usuario userLog;
 
     public Usuario getUserLog() {
         return userLog;
@@ -68,6 +68,7 @@ public class GestorUsuarios {
         usuario.setPass(new Password(password));
         usuario.validar();
         this.dao.editar(usuario);
+        this.userLog = usuario;
     }
     
     /**

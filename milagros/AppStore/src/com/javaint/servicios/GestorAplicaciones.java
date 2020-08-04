@@ -51,12 +51,18 @@ public class GestorAplicaciones {
     }
     
     
-    public boolean esAppComprada(Integer idApp) {
+    public Aplicacion esAppComprada(Integer idApp) {
         return this.appDAO.esAppComprada(idApp, this.usuario.getId());
     }
     
     public List<Calificacion> buscarCalificacionesDisponibles(){
         this.calificacionDAO = new CalificacionDaoJDBC();
         return this.calificacionDAO.get();
+    }
+    
+    public void calificar(Aplicacion app, Calificacion c) throws Exception {
+        app.calificar(c);
+        app.setUsuario(this.usuario);
+        this.appDAO.calificar(app);
     }
 }

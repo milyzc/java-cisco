@@ -230,12 +230,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
         int filaSeleccionada = jtAplicaciones.getSelectedRow();
         if(filaSeleccionada != -1){
             Aplicacion app = this.tableModel.getAplicacion(filaSeleccionada);
-            if(!this.gestorApps.esAppComprada(app.getIdApp())){
+            Aplicacion app1 = this.gestorApps.esAppComprada(app.getIdApp());
+            if(app1 == null){
                 JOptionPane.showMessageDialog(rootPane, 
                         "No puede calificar la app, tiene que comprarla primero", "Calificación",
                         JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
+            app.setCalificacion(app1.getCalificacion());
             JFCalificar fc = new JFCalificar(this.gestorApps, app);            
             fc.setVisible(true);
         } else {

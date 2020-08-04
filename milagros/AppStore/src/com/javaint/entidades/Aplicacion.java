@@ -19,6 +19,7 @@ public class Aplicacion {
     private String descripcion;
     private Float precio;
     private Usuario usuario;
+    private Calificacion calificacion;
 
     public Aplicacion(int idApp) {
         this.idApp = idApp;
@@ -77,6 +78,14 @@ public class Aplicacion {
         this.usuario = usuario;
     }
 
+    public Calificacion getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Calificacion calificacion) {
+        this.calificacion = calificacion;
+    }
+    
     public void validar() throws Exception {
         if (nombre == null || nombre.isEmpty()) {
             throw new RequeridoException("nombre");
@@ -90,5 +99,16 @@ public class Aplicacion {
         if ((precio <= 0)) {
             throw new DatoInvalidoException("precio");
         }
+    }
+    
+    public void calificar(Calificacion c) throws Exception {
+        if (c == null || c.equals(Calificacion.SIN_CALIFICAR)) {
+            throw new DatoInvalidoException("calificacion");
+        }
+        if(this.calificacion.equals(Calificacion.SIN_CALIFICAR)){
+            this.calificacion = c;
+            return;
+        }
+        this.calificacion.promediar(c);        
     }
 }

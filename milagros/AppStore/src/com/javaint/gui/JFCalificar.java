@@ -10,7 +10,9 @@ import com.javaint.entidades.Calificacion;
 import com.javaint.servicios.GestorAplicaciones;
 import java.util.List;
 import javax.swing.ButtonGroup;
-import javax.swing.JRadioButton;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,22 +25,23 @@ public class JFCalificar extends javax.swing.JFrame {
 
     /**
      * Creates new form JFCalificar
+     *
      * @param gestor
      */
     public JFCalificar(final GestorAplicaciones gestor) {
         initComponents();
         this.gestor = gestor;
     }
-    
-   public JFCalificar(final GestorAplicaciones gestor, Aplicacion app) {
+
+    public JFCalificar(final GestorAplicaciones gestor, Aplicacion app) {
         this.gestor = gestor;
         this.app = app;
         this.jlNombreApp.setText(app.getNombre());
-        this.buttonGroup1 =  new ButtonGroup();
         List<Calificacion> calificaciones = this.gestor.buscarCalificacionesDisponibles();
-        for (int i = 0; i < calificaciones.size(); i++) {
-           this.buttonGroup1.add(); // cambiar por un combo
-       }
+        ComboBoxModel model = new DefaultComboBoxModel(calificaciones.toArray());
+        jcbCalificacion.setModel(model);
+        Calificacion cActual = calificaciones.get(calificaciones.indexOf(app.getCalificacion()));
+        jcbCalificacion.getModel().setSelectedItem(cActual);
     }
 
     /**
@@ -56,6 +59,8 @@ public class JFCalificar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jlNombreApp = new javax.swing.JLabel();
+        jcbCalificacion = new javax.swing.JComboBox<>();
+        jbCalificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,19 +71,30 @@ public class JFCalificar extends javax.swing.JFrame {
 
         jlNombreApp.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
 
+        jbCalificar.setText("Calificar");
+        jbCalificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCalificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbCalificar)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jlNombreApp, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(64, 64, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlNombreApp, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcbCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,12 +104,27 @@ public class JFCalificar extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlNombreApp, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jbCalificar)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbCalificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCalificarActionPerformed
+        try {
+            Calificacion cSeleccionada = (Calificacion) jcbCalificacion.getSelectedItem();
+            gestor.calificar(this.app, cSeleccionada);            
+            this.dispose();
+            JOptionPane.showMessageDialog(this, "Calificación guardad", "Atención", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Atención", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jbCalificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -102,6 +133,8 @@ public class JFCalificar extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton jbCalificar;
+    private javax.swing.JComboBox<String> jcbCalificacion;
     private javax.swing.JLabel jlNombreApp;
     // End of variables declaration//GEN-END:variables
 }
