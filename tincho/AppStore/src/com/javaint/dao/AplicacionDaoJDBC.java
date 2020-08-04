@@ -199,7 +199,7 @@ public class AplicacionDaoJDBC implements AplicacionDao {
             rows = stm.executeUpdate();
 
         } catch (SQLException sqle) {
-            throw new RuntimeException("Error de BD. No se pudo editar la persona!", sqle);
+            throw new RuntimeException("Error de BD. No se pudo clasificar!", sqle);
         }
         return rows == 1;
     }
