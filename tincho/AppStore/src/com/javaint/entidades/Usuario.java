@@ -8,7 +8,6 @@ package com.javaint.entidades;
 import java.io.Serializable;
 
 /**
- *
  * @author MARTIN
  */
 public class Usuario implements Serializable {
@@ -16,8 +15,8 @@ public class Usuario implements Serializable {
     private int idUsuario;
     private String nombre;
     private Password pass;
-    
-    public Usuario(String nombre, String pass){
+
+    public Usuario(String nombre, String pass) {
         this(0, nombre, pass);
     }
 
@@ -27,12 +26,14 @@ public class Usuario implements Serializable {
         this.pass = new Password(pass);
     }
 
-    public int getId() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    
-    
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public String getNombre() {
         return nombre;
     }

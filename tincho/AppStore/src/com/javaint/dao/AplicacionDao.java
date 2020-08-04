@@ -13,8 +13,12 @@ import java.util.List;
  * @author MARTIN
  */
 public interface AplicacionDao {
-    public List<Aplicacion> getAplicacionesDisponibles(int idUsuario);
-    public List<Aplicacion> getAplicacionesDisponiblesFiltradas(int idUsuario, String filtro);
-    public Aplicacion getAplicacionById(int id);
-    
+    List<Aplicacion> getAplicacionesDisponibles(int idUsuario);
+    List<Aplicacion> getAplicacionesDisponiblesFiltradas(int idUsuario, String filtro);
+    boolean comprarAplicacion(int idUsuario, int idApp);
+    boolean existeCompra(int idUsuario, int idApp);
+    boolean existeApp(int idUsuario, String appNom);
+    boolean crearAplicacion(int idUsuario, String appNom, String precio);
+
+    boolean clasificarApp(int idUsuario, int idApp, int idCalificacion);
 }

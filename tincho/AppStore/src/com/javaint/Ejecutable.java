@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package com.javaint;
-import com.javaint.dao.UsuarioDao;
-import com.javaint.dao.UsuarioDaoJDBC;
-import com.javaint.entidades.Usuario;
-import com.javaint.gui.JFLogin;
+import com.javaint.gui.JFInicioSession;
+
+import javax.swing.*;
 
 /**
  *
@@ -19,7 +18,13 @@ public class Ejecutable {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException {
-        new JFLogin().setVisible(true);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame frame = new JFInicioSession();
+                frame.setVisible(true);
+            }
+        });
     }
     
 }
