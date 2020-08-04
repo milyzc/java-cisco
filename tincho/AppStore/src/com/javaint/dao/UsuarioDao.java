@@ -7,11 +7,18 @@ package com.javaint.dao;
 
 import com.javaint.entidades.Usuario;
 
+import java.sql.Connection;
+
 /**
- *
  * @author MARTIN
  */
 public interface UsuarioDao {
-    public boolean create(Usuario u);
-    public Usuario validate(String nombre, String pass);
+
+    Usuario create(Usuario u);
+
+    Usuario validate(String nombre, String pass);
+
+    Usuario obtenerXidUsuario(Integer idUsuario);
+
+    boolean editar( Usuario usuario);
 }

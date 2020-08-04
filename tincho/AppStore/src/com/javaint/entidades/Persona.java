@@ -4,38 +4,38 @@ import java.io.Serializable;
 
 public class Persona implements Serializable {
     private int idPersona;
-    private String nombre;
-    private String apellido;
+    private String apellidoNombre;
     private String dni;
     private String email;
-    private int idUsuario;
+    private Usuario usuario;
 
-    public Persona(String nombre, String apellido, String dni, String email, int idUsuario) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public Persona(String apellidoNombre, String dni, String email, String usuario,String pass) {
+        this.apellidoNombre = apellidoNombre;
         this.dni = dni;
         this.email = email;
-        this.idUsuario = idUsuario;
+        this.usuario = new Usuario(usuario,pass);
     }
+
+    public Persona(int idPersona, String apellidoNombre,
+                   String dni, String email, Usuario usuario) {
+        this.idPersona=idPersona;
+        this.apellidoNombre = apellidoNombre;
+        this.dni = dni;
+        this.email = email;
+        this.usuario = usuario;
+    }
+
 
     public int getIdPersona() {
         return idPersona;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getApellidoNombre() {
+        return apellidoNombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidoNombre(String apellidoNombre) {
+        this.apellidoNombre = apellidoNombre;
     }
 
     public String getDni() {
@@ -54,11 +54,11 @@ public class Persona implements Serializable {
         this.email = email;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
