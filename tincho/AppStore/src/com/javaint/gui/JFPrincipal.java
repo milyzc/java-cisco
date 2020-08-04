@@ -37,7 +37,7 @@ public class JFPrincipal extends JFrame {
     public JFPrincipal(final GestorUsuarios gestor) {
         this.gestorUsuarios = gestor;
         setContentPane(panelPrincipal);
-        this.setSize(700, 400);
+        this.setSize(500, 400);
         this.setResizable(false);
         this.setTitle("Aplicaciones");
         this.setLocationRelativeTo(null);
@@ -48,7 +48,7 @@ public class JFPrincipal extends JFrame {
         this.tableModel = new AppTableModel(gestorApps, false);
         this.jtAplicaciones.setModel(this.tableModel);
         this.fc = new JFileChooser();
-
+        this.pack();
         comprarAppButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,15 +104,14 @@ public class JFPrincipal extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                int returnVal = fc.showOpenDialog(JFPrincipal.this);
+                try { int returnVal = fc.showOpenDialog(JFPrincipal.this);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
+                    jlImagen.setIcon(new ImageIcon(ImageIO.read(file)));
                     gestorUsuarios.setUserAvatar(file);
-                    try {
-                        jlImagen.setIcon(new ImageIcon(ImageIO.read(file)));
-                    } catch (IOException ioException) {
-                        ioException.printStackTrace();
-                    }
+                }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
             }
         });

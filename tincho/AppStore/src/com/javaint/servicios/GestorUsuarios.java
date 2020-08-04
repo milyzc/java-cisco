@@ -68,13 +68,7 @@ public class GestorUsuarios {
      */
     private void checkFirstLogin(String userName) throws IOException {
         Path workspaceDir = Paths.get("workspace", userName);
-
-        // Se comprueba si existe o no
-        if (!Files.exists(workspaceDir)) {
-            //Si no existe el directorio, hay que crearlo
-            Files.createDirectories(workspaceDir);
-
-        }
+        existenciaDirectorio(workspaceDir);
 
         Path imageFile = Paths.get(getUserAvatar());
         if (!Files.exists(imageFile)) {
@@ -82,6 +76,15 @@ public class GestorUsuarios {
             Path defaultFile = Paths.get("images", "default.png");
             // Se copia la imagen
             Files.copy(defaultFile, imageFile);
+        }
+    }
+
+    private void existenciaDirectorio(Path workspaceDir) throws IOException {
+        // Se comprueba si existe o no
+        if (!Files.exists(workspaceDir)) {
+            //Si no existe el directorio, hay que crearlo
+            Files.createDirectories(workspaceDir);
+
         }
     }
 
@@ -111,9 +114,10 @@ public class GestorUsuarios {
     public void setUserAvatar(File file) {
         Path imageFile = Paths.get(String.valueOf(file.toPath()));
         if (Files.exists(imageFile)) {
-            Path workspaceDir = Paths.get("workspace",userLog.getApellidoNombre(),"avatar.png" );
+            Path workspaceDir = Paths.get("workspace", this.userLog.getUsuario().getNombre());
             try {
-                Files.copy(imageFile,workspaceDir , StandardCopyOption.REPLACE_EXISTING);
+                existenciaDirectorio(workspaceDir);
+                Files.copy(imageFile, workspaceDir.resolve("avatar.png"), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException ioe) {
                 throw new RuntimeException("Problema al actualizar imagen!", ioe);
             }

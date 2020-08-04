@@ -28,11 +28,12 @@ public class JFCalificar extends JDialog {
         this.aplicacion = app;
         inicializarCampos();
         setContentPane(JPCalificar);
-        this.setSize(300, 200);
+        this.setSize(200, 150);
         this.setResizable(false);
         this.setTitle("Clasificar");
         this.setLocationRelativeTo(null);
         this.setModal(true);
+        this.pack();
         volverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

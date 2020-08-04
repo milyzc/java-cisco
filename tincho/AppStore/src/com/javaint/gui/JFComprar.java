@@ -31,6 +31,7 @@ public class JFComprar extends JDialog {
         this.setTitle("Comprar");
         this.setLocationRelativeTo(null);
         this.setModal(true);
+        this.pack();
         IniciarApp();
         comprarButton.addActionListener(new ActionListener() {
             @Override
@@ -60,6 +61,6 @@ public class JFComprar extends JDialog {
     private void IniciarApp() {
         JLAppNom.setText(app.getNombre());
         JLPrecio.setText(String.valueOf(app.getPrecio()));
-        JLValoracion.setText("5");
+        JLValoracion.setText(app.getCalificacion().getNombre());
     }
 }

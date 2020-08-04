@@ -22,10 +22,11 @@ public class JFMisCompras extends JDialog{
         this.gestorApps=gestorA;
         this.gestorUsuarios=gestorU;
         setContentPane(JPMisCompras);
-        this.setSize(700, 400);
+        this.setSize(500, 400);
         this.setResizable(false);
         this.setTitle("Compras");
         this.setLocationRelativeTo(null);
+        this.pack();
         this.setModal(true);
         this.tableModel = new AppTableModel(gestorApps,true);
         this.JTCompras.setModel(this.tableModel);

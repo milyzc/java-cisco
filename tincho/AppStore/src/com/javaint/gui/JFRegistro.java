@@ -16,13 +16,15 @@ public class JFRegistro extends JDialog {
     private JTextField txtUsuario;
     private JTextField txtEmail;
     private JPanel panelRegistro;
+    private JPanel JPDatos;
+    private JPanel JPBotones;
 
     private GestorUsuarios gestorUsuario;
 
     public JFRegistro(GestorUsuarios gestor, boolean editar) {
         this.gestorUsuario = gestor;
         setContentPane(panelRegistro);
-        this.setSize(500, 300);
+        this.setSize(600, 250);
         this.setTitle(editar ? "Editar" : "Registro");
         this.btnRegistro.setText(editar ? "Editar" : "Registro");
         if (editar) {
@@ -31,6 +33,7 @@ public class JFRegistro extends JDialog {
         }
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.pack();
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,14 +48,11 @@ public class JFRegistro extends JDialog {
         btnRegistro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (txtApeNom.getText().isEmpty() ||
-                        txtDni.getText().isEmpty() ||
-                        txtUsuario.getText().isEmpty() ||
-                        txtEmail.getText().isEmpty() ||
-                        String.valueOf(txtPassword.getPassword()).isEmpty()
-                ) {
-                    JOptionPane.showMessageDialog(null, "Hay campos que no pueden quedar vacíos!", "Validación", JOptionPane.ERROR_MESSAGE);
+                StringBuffer str=validarTiposDatos();
+                if (str.length()>0) {
+                    JOptionPane.showMessageDialog(null, str, "Validación", JOptionPane.ERROR_MESSAGE);
                 } else {
+                   validarTiposDatos();
                     if (!editar && gestorUsuario.existeMail(txtEmail.getText())) {
                         JOptionPane.showMessageDialog(null, "Email existente!", "Validación", JOptionPane.ERROR_MESSAGE);
                     } else {
@@ -79,6 +79,27 @@ public class JFRegistro extends JDialog {
                 }
             }
         });
+    }
+
+    private StringBuffer validarTiposDatos() {
+        StringBuffer resp= new StringBuffer();
+        if(txtApeNom.getText().isEmpty())
+            return   resp.append("El campo apellido nombre no puede ser vacio.\n");
+        if(!txtApeNom.getText().toUpperCase().matches("^[A-Za-z]*\\s()[A-Za-z]*$"))
+            return   resp.append("El campo apellido nombre tiene un formato invalido.\n");
+        if(txtDni.getText().isEmpty())
+            return   resp.append("El campo dni no puede ser vacio.\n");
+        if(!txtDni.getText().matches("^[0-9]*$"))
+            return    resp.append("El campo dni tiene un formato invalido.\n");
+        if(txtEmail.getText().isEmpty())
+            return  resp.append("El campo email no puede ser vacio.\n");
+        if(!txtEmail.getText().toUpperCase().matches("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$"))
+            return   resp.append("El campo email tiene un formato invalido.\n");
+        if(txtUsuario.getText().isEmpty())
+            return   resp.append("El campo usuario no puede ser vacio.\n");
+        if(String.valueOf(txtPassword.getPassword()).isEmpty())
+            return   resp.append("El campo password no puede ser vacio.\n");
+       return resp;
     }
 
     private void cargarUsuario() {

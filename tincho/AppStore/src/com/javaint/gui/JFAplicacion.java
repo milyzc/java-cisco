@@ -22,17 +22,18 @@ public class JFAplicacion extends JDialog {
         this.gestorApps = gestorA;
         this.gestorUsuarios = gestorU;
         setContentPane(JPAplicacion);
-        this.setSize(300, 200);
+        this.setSize(300, 150);
         this.setResizable(false);
         this.setModal(true);
         this.setTitle("Registro Aplicación");
         this.setLocationRelativeTo(null);
+        this.pack();
         JBRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (JTNombreApp.getText().isEmpty() ||
-                        JTPrecio.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Hay campos que no pueden quedar vacíos!", "Validación", JOptionPane.ERROR_MESSAGE);
+                StringBuffer str = validarTiposDatos();
+                if (str.length() > 0) {
+                    JOptionPane.showMessageDialog(null, str, "Validación", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (!gestorApps.existeApp(gestorUsuarios.getUserLog().getUsuario().getIdUsuario(), JTNombreApp.getText())) {
                         boolean var = gestorApps.crearAplicacion(gestorUsuarios.getUserLog().getUsuario().getIdUsuario(), JTNombreApp.getText(), JTPrecio.getText());
@@ -55,5 +56,16 @@ public class JFAplicacion extends JDialog {
                 dispose();
             }
         });
+    }
+
+    private StringBuffer validarTiposDatos() {
+        StringBuffer resp = new StringBuffer();
+        if (JTNombreApp.getText().isEmpty())
+            return resp.append("El campo nombre no puede ser vacio.\n");
+        if (JTPrecio.getText().isEmpty())
+            return resp.append("El campo precio nombre no puede ser vacio.\n");
+        if (!JTPrecio.getText().matches("^\\d{0,8}(\\.\\d{1,4})?$"))
+            return resp.append("El campo precio tiene un formato invalido.\n");
+        return resp;
     }
 }

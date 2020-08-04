@@ -15,13 +15,14 @@ public class JFInicioSession extends JFrame {
     private GestorUsuarios gestor;
 
     public JFInicioSession() {
-        super("AppStore");
+        super("Inicio sesión");
         gestor = new GestorUsuarios();
         setContentPane(JPInicio);
-        this.setSize(300,200);
+        this.setSize(250,150);
         this.jbIngresar.setForeground(Color.RED);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.pack();
         jbIngresar.addActionListener(new JFInicioSession.JBIngresarListener(this));
         jlRegistrarse.addMouseListener(new JFInicioSession.JLRegistrarseMouseListener(this));
     }
